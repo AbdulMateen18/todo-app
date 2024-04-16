@@ -16,9 +16,20 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const addTodo = (data) => {
+    setTodos([
+      ...todos,
+      (data = {
+        ...data,
+        id: Number(todos[todos.length - 1].id) + 1,
+        status: "Active",
+      }),
+    ]);
+  };
+
   return (
     <div className="todo-container">
-      <TodoSearch />
+      <TodoSearch add_Todo={addTodo} />
       <TodoFilter />
       <TodoList todos={todos} delete_todo={todoDelete} />
     </div>
