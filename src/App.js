@@ -76,7 +76,7 @@
 
 // export default App;
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Search from "./components/Search";
 import TodoList from "./components/TodoList";
 import Filter from "./components/Filter";
@@ -90,6 +90,19 @@ function App() {
   ]);
 
   const [filteredTodos, setFilteredTodos] = useState(todos); // Add this line
+  const [filter, setFilter] = useState("All");
+
+  useEffect(() => {
+    setFilteredTodos(todos);
+  }, []);
+
+  useEffect(() => {
+    if (filter === "All") {
+      setFilteredTodos(todos);
+    } else {
+      setFilteredTodos(todos.filter((todo) => todo.status === filter));
+    }
+  }, [todos, filter]);
 
   const addTodo = (data) => {
     const newTodo = {
@@ -127,11 +140,7 @@ function App() {
   };
 
   const filterTodo = (cat_value) => {
-    if (cat_value === "All") {
-      setFilteredTodos(todos);
-    } else {
-      setFilteredTodos(todos.filter((todo) => todo.status === cat_value));
-    }
+    setFilter(cat_value); // Update this line
   };
 
   return (
