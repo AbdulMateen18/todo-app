@@ -1,4 +1,6 @@
 import React from "react";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const TodoList = () => {
   return (
@@ -10,8 +12,12 @@ const TodoList = () => {
         </div>
 
         <div className="btn-container">
-          <div className="edit"></div>
-          <div className="del"></div>
+          <div className="edit">
+            <FaRegEdit />
+          </div>
+          <div className="del">
+            <MdDelete />
+          </div>
         </div>
       </div>
     </div>
