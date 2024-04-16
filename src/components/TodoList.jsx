@@ -2,19 +2,36 @@ import React, { useState, useRef } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { TbEdit } from "react-icons/tb";
 
-const TodoList = ({ todos, delTodo, update_todo, complete_todo }) => {
-  const taskRef = useRef(null);
-  const [todoId, setTodoId] = useState(0);
-  const [task, setTask] = useState("");
-  const [toggle, setToggle] = useState(false);
+const TodoList = ({
+  todos,
+  delTodo,
+  update_todo,
+  complete_todo,
+  filter_todo,
+}) => {
+  // this line references the update input field
+  let taskRef = useRef(null);
+
+  let [todoId, setTodoId] = useState(0);
+  let [task, setTask] = useState("");
+
+  let [toggle, setToggle] = useState(false);
 
   // this line helps to get the current value of the update field as the user types in.
-  const [todo, setTodo] = useState("");
+  let [todo, setTodo] = useState("");
 
+  // this function helps to pass the current todo to the updateform
   const todoItem = (task, id) => {
+    // this line helps to fill up the update input field with the current todo
+    // taskRef.current.value = task
+
+    // this line helps to get the current id of the todoitem
+
     setTodoId(id);
     setTask(task);
     setToggle(true);
+
+    console.log(toggle);
   };
 
   return (
@@ -27,6 +44,7 @@ const TodoList = ({ todos, delTodo, update_todo, complete_todo }) => {
                 type="checkbox"
                 onChange={(e) => complete_todo(e, todo.id)}
               />
+              {/* <p id = "t_task">{todo.task}</p> */}
               <p
                 id="t_task"
                 className={todo.status == "Completed" ? "strike" : ""}

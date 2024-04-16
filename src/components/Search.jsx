@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const TodoSearch = ({ add_Todo }) => {
+const Search = ({ addTodo }) => {
   const {
     register,
     handleSubmit,
@@ -14,22 +14,22 @@ const TodoSearch = ({ add_Todo }) => {
       <form
         action=""
         onSubmit={handleSubmit((data) => {
-          add_Todo(data);
+          addTodo(data);
           reset();
         })}
       >
         <input
           type="text"
-          placeholder="Enter todo"
+          id="task"
+          placeholder="Enter Todo"
           {...register("task", { required: true })}
         />
+
         <button>Add</button>
       </form>
-      {errors.task?.type === "required" && (
-        <small>This field is required</small>
-      )}
+      {errors.task?.type == "required" && <small>This field is required</small>}
     </div>
   );
 };
 
-export default TodoSearch;
+export default Search;
