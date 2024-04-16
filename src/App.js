@@ -12,11 +12,15 @@ function App() {
     // { id: 5, task: "Pray to God", status: "Active" },
   ]);
 
+  const todoDelete = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className="todo-container">
       <TodoSearch />
       <TodoFilter />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} delete_todo={todoDelete} />
     </div>
   );
 }

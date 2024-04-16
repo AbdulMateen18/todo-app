@@ -2,7 +2,7 @@ import React from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, delete_todo }) => {
   return (
     <div className="todo-list">
       {todos.map((todo) => (
@@ -17,7 +17,7 @@ const TodoList = ({ todos }) => {
               <FaRegEdit size={25} />
             </div>
             <div className="del">
-              <MdDelete size={25} />
+              <MdDelete size={25} onClick={() => delete_todo(todo.id)} />
             </div>
           </div>
         </div>
