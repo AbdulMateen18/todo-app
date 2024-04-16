@@ -1,14 +1,12 @@
 import React, { useState, useRef } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { TbEdit } from "react-icons/tb";
+import toast, { Toaster } from "react-hot-toast";
 
-const TodoList = ({
-  todos,
-  delTodo,
-  update_todo,
-  complete_todo,
-  filter_todo,
-}) => {
+const notifydel = () => toast("Task Deleted.");
+const notifyUpdate = () => toast("Task Updated.");
+
+const TodoList = ({ todos, delTodo, update_todo, complete_todo }) => {
   // this line references the update input field
   let taskRef = useRef(null);
 
@@ -16,9 +14,6 @@ const TodoList = ({
   let [task, setTask] = useState("");
 
   let [toggle, setToggle] = useState(false);
-
-  // this line helps to get the current value of the update field as the user types in.
-  let [todo, setTodo] = useState("");
 
   // this function helps to pass the current todo to the updateform
   const todoItem = (task, id) => {
@@ -30,8 +25,6 @@ const TodoList = ({
     setTodoId(id);
     setTask(task);
     setToggle(true);
-
-    console.log(toggle);
   };
 
   return (
@@ -58,10 +51,17 @@ const TodoList = ({
                 <TbEdit
                   size={25}
                   onClick={(e) => todoItem(todo.task, todo.id)}
-                />{" "}
+                />
               </div>
               <div className="del">
-                <AiFillDelete size={25} onClick={() => delTodo(todo.id)} />
+                <AiFillDelete
+                  size={25}
+                  onClick={() => {
+                    delTodo(todo.id);
+                    notifydel();
+                  }}
+                />
+                <Toaster />
               </div>
             </div>
           </div>
@@ -80,6 +80,7 @@ const TodoList = ({
               onSubmit={(e) => {
                 update_todo(e, todoId, task);
                 setToggle(false);
+                notifyUpdate();
               }}
             >
               <input

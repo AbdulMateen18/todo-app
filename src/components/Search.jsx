@@ -1,5 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () => toast("Task Added.");
 
 const Search = ({ addTodo }) => {
   const {
@@ -16,6 +19,7 @@ const Search = ({ addTodo }) => {
         onSubmit={handleSubmit((data) => {
           addTodo(data);
           reset();
+          notify();
         })}
       >
         <input
@@ -27,6 +31,7 @@ const Search = ({ addTodo }) => {
 
         <button>Add</button>
       </form>
+      <Toaster />
       {errors.task?.type == "required" && <small>This field is required</small>}
     </div>
   );
