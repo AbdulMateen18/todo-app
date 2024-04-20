@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className="todo-container">
-      <h1>ToDo Lists</h1>
+      <h1>Todo Lists</h1>
       <Search addTodo={addTodo} />
       <Filter filter_todo={filterTodo} />
       <TodoList
