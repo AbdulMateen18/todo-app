@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Search from "./components/Search";
 import TodoList from "./components/TodoList";
 import Filter from "./components/Filter";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([
